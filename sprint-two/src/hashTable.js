@@ -5,8 +5,11 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(i, v);
+
+    this._storage.set(i, v);
+
 };
+
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
@@ -14,13 +17,14 @@ HashTable.prototype.retrieve = function(k){
 };
 
 HashTable.prototype.remove = function(k){
-  // var i = getIndexBelowMaxForKey(k, this._limit);
-  // this._storage.set(i, null);
-  this._storage.each(function(value, key, array) {
-    if (value === k) {
-      array.splice(key, 1);
-    }
-  });
+  var i = getIndexBelowMaxForKey(k, this._limit);
+  this._storage.set(i, null);
+  // this actually removes the value from storage rather than just masking it with null
+  // this._storage.each(function(value, key, array) {
+  //   if (value === k) {
+  //     array.splice(key, 1);
+  //   }
+  // );
 };
 
 
