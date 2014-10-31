@@ -5,26 +5,35 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
+  // var tempObject = {k: v}; //Why doesn't this work?
+  // It sets the key as k instead of "Steven" or whatever k points to
+  var tempObject = {};
+  tempObject[k] = v;
 
-    this._storage.set(i, v);
+  if (this._storage.get(i) === undefined) {
+    this._storage.set(i, [])
+  }
+  this._storage.get(i).push(tempObject);
 
 };
 
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(i);
-};
+
+  var result;
+  //Todo: refactor to use this._storage.each. Same with .remove
+  for (var j = 0; j < this._storage.get(i).length; j++) {
+    if (this._storage.get(i)[j].hasOwnProperty(k)) {
+      result = this._storage.get(i)[j][k];
+    }
+  }
+  return result;
+  };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(i, null);
-  // this actually removes the value from storage rather than just masking it with null
-  // this._storage.each(function(value, key, array) {
-  //   if (value === k) {
-  //     array.splice(key, 1);
-  //   }
-  // );
+  this._storage.get(i)[0][k] = null;
 };
 
 
