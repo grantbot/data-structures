@@ -5,6 +5,14 @@ var makeDoubleLinkedList = function(){
 
   list.addToHead = function(value) {
     var node = makeNode(value);
+    if (list.head == null) {
+      list.tail = node;
+      list.head = list.tail;
+    } else {
+      node.next = list.head;
+      list.head.previous = node;
+      list.head = node;
+    }
   };
 
   list.addToTail = function(value){
