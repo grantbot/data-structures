@@ -28,52 +28,27 @@ treeMethods.contains = function(target){
   if (this.value === target) {
     return true;
   } else if (this.children.length !== 0) {
-    for (var i = 0; i < this.children.length; i++) {
-      return this.children[i].contains(target);
-    }
+    return _.some(this.children, function(childNode) {
+      return childNode.contains(target);
+    });
   } else {
     // debugger;
     return false;
   }
 
-//grant
+
+
+// jon's note to himself (this didn't work)
   // if (this.value === target) {
   //   return true;
-  // } else if (this.children.length === 0) {
-  //   return false;
-  // } else {
-  //   for (var i = 0; i < this.children.length; i++) {
-  //     return this.children[0].contains(target) || this.children[i].contains(target);
-  //   }
-  // }
-
-
-
+  // } else if (this.children.length !== 0) {
   //   for (var i = 0; i < this.children.length; i++) {
   //     return this.children[i].contains(target);
   //   }
   // } else {
+  //   // debugger;
   //   return false;
   // }
-
-
-
-// jon's note to himself
-  // var result = false;
-
-  // var recurse = function(target) {
-  //   if (this.value === target) {
-  //     result = true;
-  //   } else {
-  //     if (this.children.length !== 0){
-  //       result = this.children[i].contains(target);
-  //     } else {
-  //       result = false
-  //     }
-  //   }
-  //   return result;
-  // };
-  // recurse(target);
 
 };
 
