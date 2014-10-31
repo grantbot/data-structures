@@ -11,6 +11,7 @@ var makeBinarySearchTree = function(value){
 
 makeBinarySearchTree.prototype.insert = function(value) {
   //If current node is same as inserted, stop
+  //remove top if block
   if (this.value === value) {
     return; //Maybe not necessary? Would other block be entered without it?
   }
