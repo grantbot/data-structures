@@ -54,12 +54,26 @@ describe('doubleLinkedList', function() {
 
   //Add Test that tests proper pointing
 
-  // it('should not contain a value that was removed', function(){
-  //   linkedList.addToTail(4);
-  //   linkedList.addToTail(5);
-  //   linkedList.removeHead();
-  //   expect(linkedList.contains(4)).to.equal(false);
-  // });
+  it('should not contain a value that was removed from head', function(){
+    linkedList.addToTail(4);
+    linkedList.removeHead();
+    expect(linkedList.contains(4)).to.equal(false);
+
+    linkedList.addToHead(5);
+    linkedList.removeHead();
+    expect(linkedList.contains(5)).to.equal(false);
+  });
+
+  it('should not contain a value that was removed from tail', function(){
+    // linkedList.addToTail(5);
+    // linkedList.addToTail(4);
+    // linkedList.removeTail();
+    // expect(linkedList.contains(4)).to.equal(false);
+
+    linkedList.addToHead(5);
+    linkedList.removeTail();
+    expect(linkedList.contains(5)).to.equal(false);
+  });
 
   // add more tests here to test the functionality of linkedList
 });

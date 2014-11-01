@@ -3,6 +3,16 @@ var makeDoubleLinkedList = function(){
   list.head = null;
   list.tail = null;
 
+  var makeNode = function(value){
+  var node = {};
+
+  node.value = value;
+
+  node.previous = null;
+  node.next = null;
+  return node;
+};
+
   list.addToHead = function(value) {
     var node = makeNode(value);
     if (list.head == null) {
@@ -34,6 +44,28 @@ var makeDoubleLinkedList = function(){
     return temp.value;
   };
 
+  list.removeTail = function(){ //Extra credit
+    //Set temp to old tail
+    var temp = list.tail;
+    //Delete old tail
+    list.tail = null;
+    //Reassign new tail to old tail's previous
+    if (temp.previous) {
+      list.tail = temp.previous;
+      list.tail.next = null;
+    } else {
+      list.head = null;
+    }
+    // if (list.tail !== null){
+      // list.tail.next = null;
+    // } else {
+    //   list.head = null;
+    // }
+    // console.log(list.head)
+    //Return old tail's value
+    return temp.value;
+  };
+
   list.contains = function(target){
     var recurse = function(node) {
       if (node.value == target){
@@ -44,23 +76,17 @@ var makeDoubleLinkedList = function(){
         return recurse(node.next);
       }
     };
-
-    return recurse(list.head);
+    if (list.head !== null) {
+      return recurse(list.head);
+    } else {
+      return false;
+    }
   };
 
   return list;
 };
 
-var makeNode = function(value){
-  var node = {};
 
-  node.value = value;
-
-  node.previous = null;
-  node.next = null;
-
-  return node;
-};
 
 /*
  * Complexity: What is the time complexity of the above functions?
