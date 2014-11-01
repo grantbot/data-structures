@@ -4,6 +4,11 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(k, v){
+  //The table extending logic would go in here. With each insert we update the size of the table,
+  //and if it's over 75% of the limit we extend. Which entails making a new, larger table, looping
+  //through the old keys and rehashing and inserting them into the new table as you go. Then delete
+  //the old table. Used .each in the helper functions in conjunction with bind.
+
   var i = getIndexBelowMaxForKey(k, this._limit);
   // var tempObject = {k: v}; //Why doesn't this work?
   // It sets the key as k instead of "Steven" or whatever k points to
