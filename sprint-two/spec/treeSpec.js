@@ -32,6 +32,22 @@ describe('tree', function() {
     expect(tree.children[0].children[0].value).to.equal(6);
   });
 
+  it('should be able to add children to a tree\'s child and identify their parents', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(6);
+    expect(tree.children[0].children[0].parent).to.equal(tree.children[0]);
+  });
+
+  it('should be able to dissociate nodes from their parent', function() {
+    tree.addChild(5);
+    tree.children[0].addChild(6);
+    var severed = tree.children[0].children[0].removeFromParent();
+
+    expect(severed.parent).to.equal(null);
+    expect(tree.children[0].contains(6)).to.equal(false);
+
+  });
+
   it('should correctly detect nested children', function(){
     tree.addChild(5);
     tree.addChild(6);
